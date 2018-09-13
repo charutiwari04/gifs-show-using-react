@@ -1,6 +1,6 @@
 ## About the Project
 
-This application search for gifs using the giphy api. The application searches for gifs as user types. The gifs are animated in such a way that when user hovers over it, the opacity is reduced.
+This application search for gifs using the giphy api. The application searches for gifs as user types. The gifs are animated in such a way that when user hovers over it, they play else remain still.
 
 ## Folder Structure
 
