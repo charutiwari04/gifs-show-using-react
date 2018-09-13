@@ -73,6 +73,3 @@ img{
   height: 100%;
   border: 2px solid black !important;
 }
-img:hover{
-  opacity: 0.2;
-}

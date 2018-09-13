@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+class Gif extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isHovered: false
+    }
+    this.handleHover = this.handleHover.bind(this);
+  }
+  handleHover(e) {
+    this.setState(function(){
+      return {
+        isHovered: !this.state.isHovered
+      }
+    })
+  }
+  render() {
+    return(
+      <div id={this.props.idval}>
+        {this.state.isHovered ?
+          <img src={this.props.playUrl} alt={this.props.altval} key={this.props.keyval} width="200" height="200" onMouseOver={this.handleHover} onMouseLeave={this.handleHover}/>
+          :
+          <img src={this.props.stillUrl} alt={this.props.altval} key={this.props.keyval} width="200" height="200" onMouseOver={this.handleHover} onMouseLeave={this.handleHover}/>
+        }
+      </div>
+    )
+  }
+}
 function Gifs(props) {
   var result = props.gifs;
   let gifsD = [];
@@ -9,10 +36,10 @@ function Gifs(props) {
       if(i===2){
         gifsD.push(
           <div className="gifs-block">
-            <div id='id1'><img src={result[0].images.fixed_height.url} key={result[0].id} alt="gif1" width="200" height="200"/></div>
+            <Gif idval="id1" altval="gif1" keyval={result[0].id} playUrl={result[0].images.fixed_height.url} stillUrl={result[0].images.fixed_height_still.url}/>
             <div id="twoblock">
-              <div id='id2'><img src={result[1].images.fixed_height.url} key={result[1].id} alt="gif2" width="200" height="200"/></div>
-              <div id='id3'><img src={result[2].images.fixed_height.url} key={result[2].id} alt="gif3" width="200" height="200"/></div>
+              <Gif idval="id2" altval="gif2" keyval={result[1].id} playUrl={result[1].images.fixed_height.url} stillUrl={result[1].images.fixed_height_still.url}/>
+              <Gif idval="id3" altval="gif3" keyval={result[2].id} playUrl={result[2].images.fixed_height.url} stillUrl={result[2].images.fixed_height_still.url}/>
             </div>
           </div>
         )
@@ -20,17 +47,13 @@ function Gifs(props) {
      if(i===5){
         gifsD.push(
           <div className="gifs-block">
-            <div id='id4'><img src={result[3].images.fixed_height.url} key={result[3].id} alt="gif4" width="200" height="200"/></div>
-            <div id='id5'><img src={result[4].images.fixed_height.url} key={result[4].id} alt="gif5" width="200" height="200"/></div>
-            <div id='id6'><img src={result[5].images.fixed_height.url} key={result[5].id} alt="gif6" width="200" height="200"/></div>
+            <Gif idval="id4" altval="gif4" keyval={result[3].id} playUrl={result[3].images.fixed_height.url} stillUrl={result[3].images.fixed_height_still.url}/>
+            <Gif idval="id5" altval="gif5" keyval={result[4].id} playUrl={result[4].images.fixed_height.url} stillUrl={result[4].images.fixed_height_still.url}/>
+            <Gif idval="id6" altval="gif6" keyval={result[5].id} playUrl={result[5].images.fixed_height.url} stillUrl={result[5].images.fixed_height_still.url}/>
           </div>
         )
       }
     }
-    console.log(gifsD);
-    //gifsD = result.map(function(gif){
-      //return <Gif url={gif.images.fixed_height.url} key={gif.id} />
-    //});
   }
   return(
     <div className="gifs-container">
